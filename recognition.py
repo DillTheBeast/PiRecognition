@@ -45,15 +45,15 @@ while True:
         if matches[0]:
             #Drawing a box with correct name around face
             cv2.rectangle(video_frame, (left, top), (right, bottom), (243, 255, 130), 4)
-            cv2.putText(video_frame, "Dillon", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 0), 2)
+            cv2.putText(video_frame, "Dillon", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
 
         elif matches2[0]:
             cv2.rectangle(video_frame, (left, top), (right, bottom), (180, 105, 255), 4)
-            cv2.putText(video_frame, "Arielle", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 0), 2)
+            cv2.putText(video_frame, "Arielle", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
 
         elif matches3[0]:
             cv2.rectangle(video_frame, (left, top), (right, bottom), (0, 255, 0), 4)
-            cv2.putText(video_frame, "Terry", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 0), 2)
+            cv2.putText(video_frame, "Terry", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
 
         # elif matches4[0]:
         #     cv2.rectangle(video_frame, (left, top), (right, bottom), (0, 0, 0), 4)
@@ -61,13 +61,16 @@ while True:
         else: 
             #If face isn't recognized Drawing stranger box
             cv2.rectangle(video_frame, (left, top), (right, bottom), (255, 0, 0), 4)
-            cv2.putText(video_frame, "Stranger", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+            cv2.putText(video_frame, "Stranger", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
 
+    #Setting up the actual displayed window
     cv2.imshow("Face Detection", video_frame)
 
+    #If the user presses q key then break out of loop
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
+#Stop everything
 video_capture.release()
 cv2.destroyAllWindows()
 
