@@ -11,6 +11,9 @@ img_encoding2 = face_recognition.face_encodings(rgb_img2)[0]
 img3 = cv2.imread("Terry.jpg")
 rgb_img3 = cv2.cvtColor(img3, cv2.COLOR_BGR2RGB)
 img_encoding3 = face_recognition.face_encodings(rgb_img3)[0]
+# img4 = cv2.imread("Terrielle.jpg")
+# rgb_img4 = cv2.cvtColor(img4, cv2.COLOR_BGR2RGB)
+# img_encoding4 = face_recognition.face_encodings(rgb_img4)[0]
 
 #Setting up video with lower res so les lag
 video_capture = cv2.VideoCapture(0)
@@ -37,6 +40,7 @@ while True:
         matches = face_recognition.compare_faces([img_encoding], face_encoding, tolerance=0.5)
         matches2 = face_recognition.compare_faces([img_encoding2], face_encoding, tolerance=0.5)
         matches3 = face_recognition.compare_faces([img_encoding3], face_encoding, tolerance=0.5)
+        #matches4 = face_recognition.compare_faces([img_encoding4], face_encoding, tolerance=0.5)
         #Finding out if they match
         if matches[0]:
             #Drawing a box with correct name around face
@@ -51,6 +55,9 @@ while True:
             cv2.rectangle(video_frame, (left, top), (right, bottom), (0, 255, 0), 4)
             cv2.putText(video_frame, "Terry", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 0), 2)
 
+        # elif matches4[0]:
+        #     cv2.rectangle(video_frame, (left, top), (right, bottom), (0, 0, 0), 4)
+        #     cv2.putText(video_frame, "Terrielle", (left, top-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 0), 2)
         else: 
             #If face isn't recognized Drawing stranger box
             cv2.rectangle(video_frame, (left, top), (right, bottom), (255, 0, 0), 4)
