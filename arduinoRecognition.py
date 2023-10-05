@@ -6,15 +6,15 @@ import serial
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 # Load the pictures of the family so I can compare
-img = cv2.imread("Dillon.jpg")
-rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-img_encoding = face_recognition.face_encodings(rgb_img)[0]
-img2 = cv2.imread("Arielle.jpg")
-rgb_img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
-img_encoding2 = face_recognition.face_encodings(rgb_img2)[0]
-img3 = cv2.imread("Terry.jpg")
-rgb_img3 = cv2.cvtColor(img3, cv2.COLOR_BGR2RGB)
-img_encoding3 = face_recognition.face_encodings(rgb_img3)[0]
+dillon_img = cv2.imread("Dillon.jpg")
+dillon_rgb_img = cv2.cvtColor(dillon_img, cv2.COLOR_BGR2RGB)
+dillon_img_encoding = face_recognition.face_encodings(dillon_rgb_img)[0]
+arielle_img = cv2.imread("Arielle.jpg")
+arielle_rgb_img = cv2.cvtColor(arielle_img, cv2.COLOR_BGR2RGB)
+arielle_img_encoding = face_recognition.face_encodings(arielle_rgb_img)[0]
+terry_img = cv2.imread("Terry.jpg")
+terry_rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+terry_img_encoding = face_recognition.face_encodings(terry_rgb_img)[0]
 # img4 = cv2.imread("Terrielle.jpg")
 # rgb_img4 = cv2.cvtColor(img4, cv2.COLOR_BGR2RGB)
 # img_encoding4 = face_recognition.face_encodings(rgb_img4)[0]
@@ -41,9 +41,9 @@ while True:
     for face_location, face_encoding in zip(face_locations, frame_encodings):
         top, right, bottom, left = face_location
         #Making variable for comparing faces
-        matches = face_recognition.compare_faces([img_encoding], face_encoding, tolerance=0.5)
-        matches2 = face_recognition.compare_faces([img_encoding2], face_encoding, tolerance=0.5)
-        matches3 = face_recognition.compare_faces([img_encoding3], face_encoding, tolerance=0.5)
+        matches = face_recognition.compare_faces([dillon_img_encoding], face_encoding, tolerance=0.5)
+        matches2 = face_recognition.compare_faces([arielle_img_encoding], face_encoding, tolerance=0.5)
+        matches3 = face_recognition.compare_faces([terry_img_encoding], face_encoding, tolerance=0.5)
         #matches4 = face_recognition.compare_faces([img_encoding4], face_encoding, tolerance=0.5)
         #Finding out if they match
         if matches[0]:
