@@ -49,7 +49,7 @@ while True:
     cv2.imshow('Preview', img)
 
     # Check if the 'q' key is pressed to exit the loop
-    if cv2.waitKey(20) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 # Release the video capture device and destroy all windows
