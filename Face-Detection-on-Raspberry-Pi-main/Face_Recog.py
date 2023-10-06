@@ -1,7 +1,7 @@
 import cv2
 from PIL import Image
 
-labels = ["Dillon", "Terrielle", "Arielle", "Terry"]  # List of labels for face recognition
+labels = ["Arielle", "Dillon", "Terrielle", "Terry"]  # List of labels for face recognition
 
 # Load the pre-trained face cascade classifier
 face_cascade = cv2.CascadeClassifier('dillon_frontalface_default.xml')
