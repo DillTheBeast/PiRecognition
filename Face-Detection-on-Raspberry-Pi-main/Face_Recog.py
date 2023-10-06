@@ -1,6 +1,4 @@
 import cv2
-import numpy as np
-import os
 from PIL import Image
 
 labels = ["Dillon", "Terrielle", "Arielle", "Terry"]  # List of labels for face recognition
@@ -10,9 +8,7 @@ face_cascade = cv2.CascadeClassifier('dillon_frontalface_default.xml')
 print(cv2.__version__)
 
 # Load the pre-trained face recognizer
-#recognizer = cv2.face.createLBPHFaceRecognizer()
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-#recognizer.load("face-trainner.yml")
 recognizer.read("face-trainner.yml")
 
 # Open the video capture device (webcam)
@@ -21,6 +17,10 @@ cap = cv2.VideoCapture(0)
 while True:
     # Read a frame from the video capture device
     ret, img = cap.read()
+
+    # Check if the frame is not empty
+    if not ret:
+        break
 
     # Convert the frame to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
