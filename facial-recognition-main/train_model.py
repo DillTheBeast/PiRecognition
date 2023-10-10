@@ -23,15 +23,15 @@ for (i, imagePath) in enumerate(imagePaths):
 		len(imagePaths)))
 	name = imagePath.split(os.path.sep)[-2]
 
-	# load the input image and convert it from RGB (OpenCV ordering)
+	# load the input image, resize it, and convert it from RGB (OpenCV ordering)
 	# to dlib ordering (RGB)
 	image = cv2.imread(imagePath)
+	image = cv2.resize(image, (500, 500))  # Resize to a smaller dimension
 	rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 	# detect the (x, y)-coordinates of the bounding boxes
 	# corresponding to each face in the input image
-	boxes = face_recognition.face_locations(rgb,
-		model="hog")
+	boxes = face_recognition.face_locations(rgb, model="hog")
 
 	# compute the facial embedding for the face
 	encodings = face_recognition.face_encodings(rgb, boxes)
@@ -46,6 +46,5 @@ for (i, imagePath) in enumerate(imagePaths):
 # dump the facial encodings + names to disk
 print("[INFO] serializing encodings...")
 data = {"encodings": knownEncodings, "names": knownNames}
-f = open("encodings.pickle", "wb")
-f.write(pickle.dumps(data))
-f.close()
+with open("encodings.pickle", "wb") as f:
+	f.write(pickle.dumps(data))
